@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import random
+import numpy
+import csv
+import panda as pd
+
+#%%
+
+#Ejercicio de clase
+
+def geromgosoopt(palabra):
+    vocales = ["a","e","i","o","u"]
+    res = ""
+    for c in palabra:
+        res += c
+        if c in vocales:
+            res += "p" + c
+    return res
+
+def geringosolista(lista):
+    res = {}
+    for c in lista:
+        res[c] = geromgosoopt(c)
+    return res
+
+#print(geringosolista(["hola","bola", "tartamudo"]))
+
+#%%
+
+f = open("datame.txt", "rt")
+
+data = f.read()
+
+#print(data)
+
+f.close()
+
+with open("datame.txt","rt") as f:
+    data = f.read 
+    
+#%%
+
+with open("cronograma_sugerido.csv", "rt") as file:
+    for line in file:
+        datos_linea = line.split(",")
+        print(datos_linea[1])
+        
+#%% 
+
+#EJercicios de clase
+
+def tiradaGenerala():
+    res = []
+    for i in range(0,6):
+        res.append(random.randint(1, 6))
+    return res
+
+#print(tiradaGenerala())
+
+def estaEstudiante():
+    f = open("datame.txt", "rt")
+    data = f.read()
+    f.close()
+    a = data.split("\n")
+    
+    for line in a:_c
+        if "estudiante" in line:
+            print(line)
+
+#estaEstudiante()
+
+def listaDeMaterias():
+    with open("cronograma_sugerido.csv", "rt") as file:
+        for line in file:
+            datos_linea = line.split(",")
+            print(datos_linea[1])
+            
+
+#listaDeMaterias()
+
+def cuantasPorHacer(n):
+    res = 0
+    with open("cronograma_sugerido.csv", "rt") as file:
+        for line in file:
+            datos_linea = line.split(",")
+            if (datos_linea[0]=="Cuatrimestre"):
+                #print("asaaaaa")
+                continue
+                
+            else:
+                #print(datos_linea[0])
+                if int(datos_linea[0]) == n:
+                    res+=1
+    return res
+
+#cuantasPorHacer(5)
+
+def materias_cuatrimesstre(nombre, n):
+    res = {}
+    f = open(nombre)
+    filas = csv.reader(f)
+    next(filas)
+    for fila in filas:
+        if fila[0]==n:
+            res[fila[1]]=fila[]
+)
+    
+#%%
+    
