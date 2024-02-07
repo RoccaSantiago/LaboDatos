@@ -148,6 +148,7 @@ def main():
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     
     # IMPORTANTE: Recordar que se utilizaran los datos de vuelo, aeropuerto, pasajero y reserva
+#%%
 
     print()
     print("# =============================================================================")
