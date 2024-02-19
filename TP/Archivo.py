@@ -29,13 +29,15 @@ datos_Secciones_Sedes = pd.read_csv(carpeta + "Datos_Secciones_Sedes.csv")
 
 #Creamos el dataframe vacio representando nuestro modelo relacional:
     
-pais = pd.DataFrame(columns = ["iso3", "nombre", "pbi", "region"])
+pais = pd.DataFrame(columns = ["iso3", "nombre_pais", "pbi", "region"])
 
-sede = pd.DataFrame(columns = ["codigo", "nombre", "iso3"])
+sedes = pd.DataFrame(columns = ["codigo_sede", "nombre_sede", "iso3"])
 
-seccion = pd.DataFrame(columns = ["descripcion", "titular_nombre", "titular_apellido", "codigo_sede"])
+secciones = pd.DataFrame(columns = ["codigo_sede","nombre_seccion"])
 
-red_social = pd.DataFrame(columns = ["link", "Nombre", "Sede"])
+links = pd.DataFrame(columns = ["codigo_sede","link"])
+
+redes = pd.DataFrame(columns = ["link", "Nombre_red", "usuario_nombre"])
 
 #%%
 
