@@ -105,7 +105,7 @@ consultaSQL = """
 #                        LINKS                         # 
 ########################################################         
 
-archivo = open(carpeta + "Datos_Completos_Sedes.csv", encoding="utf8")
+archivo = open(carpeta + "Datos_Completos_Sedes.csv", encoding = "utf8")
 
 filas = csv.reader(archivo)
 
@@ -119,11 +119,12 @@ for linea in filas:
     if linea[5] != None:
         links_linea = linea[5].split(" // ")
         for link in links_linea:
-            links_nuevo.append([linea[0],link])
+            if link != " " and link != "":
+                links_nuevo.append([linea[0],link])
         
 archivo.close()
 
-links_nuevo = pd.DataFrame(links_nuevo, columns = ["codigo_sede", "link" ])
+links_nuevo = pd.DataFrame(links_nuevo, columns = ["codigo_sede", "link"])
 
 consultaSQL = """
             SELECT DISTINCT *
