@@ -9,7 +9,7 @@ Grupo: pip install grupo_1
     
 import pandas as pd
 import csv
-#from inline_sql import sql, sql_val
+from inline_sql import sql, sql_val
 
 # https://miro.com/welcomeonboard/b0FPNDI0SXNJUXNrQ3dTbnhzYWtMeGttV0h4TmQzQTBreEtYZDdyWEtYQWRUZXJDbUNQOU9Yc0tkUG1CeGtOZHwzMDc0NDU3MzYxNDg1ODk2Nzk3fDI=?share_link_id=441943217891
 
@@ -66,7 +66,7 @@ consultaSQL = """
             FROM sedes
             """
             
-#sedes = sql^consultaSQL
+sedes = sql^consultaSQL
 
 
 ########################################################
@@ -74,18 +74,25 @@ consultaSQL = """
 ########################################################
 
 consultaSQL = """
-            SELECT DISTINCT cs.iso3, cs.pais_castellano AS nombre_pais, bm.pbi, cs.region_geografica AS region
+            SELECT DISTINCT cs.pais_iso_3 AS iso3, cs.pais_castellano AS nombre_pais, bm.pbi, cs.region_geografica AS region
             FROM datos_banco_mundial AS bm
             INNER JOIN datos_completos_sedes AS cs
-            ON bm.iso3 = cs.iso3
+            ON bm.Codigo = cs.pais_iso_3
             UNION 
             SELECT DISTINCT *
             FROM pais
             """
             
-#pais = sql^consultaSQL          
+pais = sql^consultaSQL          
 
-      
+#################################################################################################################
+                                                                                                                #
+#SOLAMENTE TOMA LOS PAISES DONDE HAY SEDES. QUEREMOS TAMBIEN LOS QUE NO HAY SEDES?                              #
+                                                                                                                #
+#################################################################################################################
+
+
+
 ########################################################
 #                      SECCIONES                       #
 ########################################################
@@ -98,7 +105,7 @@ consultaSQL = """
             FROM secciones
             """
             
-#secciones = sql^consultaSQL
+secciones = sql^consultaSQL
 
 
 ########################################################
@@ -126,17 +133,17 @@ for linea in filas:
         
 archivo.close()
 
-links_nuevo = pd.DataFrame(links_nuevo, columns = ["codigo_sede", "link"])
+links_nuevo = pd.DataFrame(links_nuevo, columns = ["codigo_sede", "link","red_Social"])
 
 consultaSQL = """
             SELECT DISTINCT *
             FROM links
             UNION 
-            SELECT DISTINCT *
+            SELECT DISTINCT * 
             FROM links_nuevo
             """
             
-#links = sql^consultaSQL            
+links = sql^consultaSQL            
 
 
 #%%
@@ -145,7 +152,7 @@ consultaSQL = """
 
                 
 ConsultaSQL1 = """
-            SELECT DISTINCT pais.nombre AS País, COUNT(secciones.nombre_seccion) AS sedes, AVG(secciones_por_sede) AS secciones promedio, pais.pbi AS PBI per Cápita 2022 (U$S)
+            SELECT DISTINCT pais.nombre AS País, COUNT(secciones.nombre_seccion) AS sedes, AVG(secciones_por_sede) AS secciones_promedio, pais.pbi AS PBI_per_Cápita_2022_(U$S)
             from pais
             
             INNER JOIN secciones
@@ -161,6 +168,8 @@ ConsultaSQL1 = """
             GROUP BY pais.nombre
             ORDER BY pais.nombre DES
             """
+
+print(sql^ConsultaSQL1)
 
 ConsultaSQL2= """
             SELECT DISTINCT region AS Región geográfica, SUM(sedesxpais.sedes_por_pais) AS Países Con SedesArgentinas, promedio_pbi_region.promedio AS Promedio PBI perCápita 2022 (U$S)
