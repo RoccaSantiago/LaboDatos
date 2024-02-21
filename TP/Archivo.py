@@ -37,7 +37,7 @@ sedes = pd.DataFrame(columns = ["codigo_sede", "nombre_sede", "iso3"])
 
 secciones = pd.DataFrame(columns = ["codigo_sede","nombre_seccion"])
 
-links = pd.DataFrame(columns = ["codigo_sede","link"])
+links = pd.DataFrame(columns = ["codigo_sede","link","red_social"])
 
 
 
@@ -120,7 +120,9 @@ for linea in filas:
         links_linea = linea[5].split(" // ")
         for link in links_linea:
             if link != " " and link != "":
-                links_nuevo.append([linea[0],link])
+                links_nuevo.append([linea[0],link, link.split(".")[1]])
+            
+                
         
 archivo.close()
 
@@ -139,4 +141,67 @@ consultaSQL = """
 
 #%%
 
-    
+#Consultas SQL
+
+                
+ConsultaSQL1 = """
+            SELECT DISTINCT pais.nombre AS País, COUNT(secciones.nombre_seccion) AS sedes, AVG(secciones_por_sede) AS secciones promedio, pais.pbi AS PBI per Cápita 2022 (U$S)
+            from pais
+            
+            INNER JOIN secciones
+            ON pais.iso3 = secciones.iso3
+            
+            INNER JOIN (        
+                SELECT DISTINCT secciones.codigo_sede AS codigo_sede, COUNT(secciones.nombre_seccion) AS secciones_por_sede
+                FROM secciones
+                GROUP BY secciones.codigo_sede
+                ) AS subCon
+            ON subCon.codigo_sede = secciones.codigo_sede
+            
+            GROUP BY pais.nombre
+            ORDER BY pais.nombre DES
+            """
+
+ConsultaSQL2= """
+            SELECT DISTINCT region AS Región geográfica, SUM(sedesxpais.sedes_por_pais) AS Países Con SedesArgentinas, promedio_pbi_region.promedio AS Promedio PBI perCápita 2022 (U$S)
+            FROM pais
+            GROUP BY region
+
+            INNER JOIN(
+                SELECT DISTINCT region, AVG(pbi) AS promedio
+                FROM pais
+                GROUP by region
+                ) AS promedio_pbi_region
+            ON promedio_pbi_region.region = pais.region
+
+            INNER JOIN(
+                SELECT DISTINCT iso3, COUNT(codigo_sede) AS sedes_por_pais
+                FROM sedes
+                GROUP BY sedes
+                ) AS sedesxpais
+            ON sedesxpais.iso3 = pais.iso3
+            ORDER BY Promedio PBI perCápita 2022 (U$S)    
+            
+            """
+            
+ConsultaSQL3= """
+            SELECT DISTINCT pais.iso3, COUNT(redes.codigo_sede)
+            FROM pais
+            INNER JOIN(
+                SELECT DISTINCT pais.iso3 AS iso3, links.red_Social AS redes
+                FROM links 
+                INNER JOIN sedes
+                ON sedes.codigo_sede = links.codigo_sede
+                INNER JOIN pais
+                ON sedes.iso3 = pais.iso3
+                ) AS redes_por_pais
+            ON redes_por_pais.iso3 = pais.iso3
+            """
+
+ConsultaSQL4= """
+            SELECT DISTINCT pais.nombre, sedes.codigo_sede AS sede, links.red_social AS Red Social, links.link AS URL
+            FROM sedes
+            INNER JOIN pais
+            ON pais.iso3 = sedes.iso3
+            ORDER BY pais.nombre ASC, sedes.sede_codigo ACS, links.red_social ASC,links.url ASC
+            """
