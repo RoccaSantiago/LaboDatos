@@ -8,6 +8,7 @@ Grupo: pip install grupo_1
 #Importamos las bibliotecas a usar:
     
 import pandas as pd
+import csv
 #from inline_sql import sql, sql_val
 
 # https://miro.com/welcomeonboard/b0FPNDI0SXNJUXNrQ3dTbnhzYWtMeGttV0h4TmQzQTBreEtYZDdyWEtYQWRUZXJDbUNQOU9Yc0tkUG1CeGtOZHwzMDc0NDU3MzYxNDg1ODk2Nzk3fDI=?share_link_id=441943217891
@@ -38,7 +39,7 @@ secciones = pd.DataFrame(columns = ["codigo_sede","nombre_seccion"])
 
 links = pd.DataFrame(columns = ["codigo_sede","link"])
 
-redes = pd.DataFrame(columns = ["link", "Nombre_red", "usuario_nombre"])
+
 
 #%%
 
@@ -50,6 +51,9 @@ redes = pd.DataFrame(columns = ["link", "Nombre_red", "usuario_nombre"])
 
 #PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR
 
+
+
+    
 ########################################################
 #                        SEDES                         #
 ########################################################
@@ -57,10 +61,13 @@ redes = pd.DataFrame(columns = ["link", "Nombre_red", "usuario_nombre"])
 consultaSQL = """
             SELECT DISTINCT sede_id AS codigo_sede, sede_desc_castellano AS nombre_sede, pais_iso_3 AS iso3
             FROM datos_completos_sedes
-            UNION sedes
+            UNION 
+            SELECT DISTINCT *
+            FROM sedes
             """
             
 #sedes = sql^consultaSQL
+
 
 ########################################################
 #                         PAIS                         #
@@ -71,11 +78,14 @@ consultaSQL = """
             FROM datos_banco_mundial AS bm
             INNER JOIN datos_completos_sedes AS cs
             ON bm.iso3 = cs.iso3
-            UNION pais
+            UNION 
+            SELECT DISTINCT *
+            FROM pais
             """
             
 #pais = sql^consultaSQL          
-            
+
+      
 ########################################################
 #                      SECCIONES                       #
 ########################################################
@@ -83,39 +93,48 @@ consultaSQL = """
 consultaSQL = """
             SELECT DISTINCT sede_id AS codigo_sede, sede_desc_castellano AS nombre_seccion
             FROM datos_Secciones_Sedes
-            UNION secciones
+            UNION 
+            SELECT DISTINCT *
+            FROM secciones
             """
             
 #secciones = sql^consultaSQL
 
+
 ########################################################
-#                        LINKS                         # PRJWGNIHSDNGVSKOADGVNKOSANVKOSPADNVKOSDANVKOASDVNKOSAVNAOKVNASKIOPVN SOK'LVN SAKOP'LVna sova
+#                        LINKS                         # 
 ########################################################         
 
+archivo = open(carpeta + "Datos_Completos_Sedes.csv", encoding="utf8")
 
-#COMO HACEMOS PARA SEPARAR LOS LINKS POR RED SOCIAL (redes_sociales) en datos completos. Se que es con algo de LIKE pero no sabria como hacerlo
+filas = csv.reader(archivo)
+
+#Sacamos el encabezado para poder iterar los datos
+next(filas) 
+
+
+links_nuevo = []
+
+for linea in filas:
+    if linea[5] != None:
+        links_linea = linea[5].split(" // ")
+        for link in links_linea:
+            links_nuevo.append([linea[0],link])
+        
+archivo.close()
+
+links_nuevo = pd.DataFrame(links_nuevo, columns = ["codigo_sede", "link" ])
 
 consultaSQL = """
-            SELECT DISTINCT sede_id AS codigo_sede, links
-            FROM datos_completos_sedes
-            UNION links
-            """    
+            SELECT DISTINCT *
+            FROM links
+            UNION 
+            SELECT DISTINCT *
+            FROM links_nuevo
+            """
             
 #links = sql^consultaSQL            
 
-########################################################
-#                        REDES                         # feSDfjm saJOK;IFBsdjo;fvbsJOUDUGVBosjduvbjoSDVB JOSDCVBsaojvcbSDUOJFVBDSoujvbsdouVBASDOOVBISDBOIVABSOIVA
-########################################################
-
-#MISMO LABURO CON LINKS. COMO SACAMOS EL USUARIO Y LA RED. ES CON LIKE!!!! PERO COMOOOOO!!!!!!?>?!?!?!?!?!?!?!??!@EKO1 MNRFPOIKWENMGF]PIOKWENMfgpvwmSNEPGV Msvl[PSVM,L[sv]]
-
-consultaSQL = """
-            SELECT DISTINCT links, 
-            FROM datos_completos_sedes
-            UNION links
-            """     
-            
-#redes = sql^consultaSQL            
 
 #%%
 
