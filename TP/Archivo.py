@@ -10,6 +10,12 @@ Grupo: pip install grupo_1
 import pandas as pd
 import csv
 from inline_sql import sql, sql_val
+import pandas as pd
+import numpy as np
+from matplotlib import ticker   
+from matplotlib import rcParams 
+import matplotlib.pyplot as plt 
+import seaborn as sns
 
 # https://miro.com/welcomeonboard/b0FPNDI0SXNJUXNrQ3dTbnhzYWtMeGttV0h4TmQzQTBreEtYZDdyWEtYQWRUZXJDbUNQOU9Yc0tkUG1CeGtOZHwzMDc0NDU3MzYxNDg1ODk2Nzk3fDI=?share_link_id=441943217891
 
@@ -17,8 +23,8 @@ from inline_sql import sql, sql_val
 
 #Abrimos y guardamos los datasets:
 
-carpeta = "/home/Estudiante/Escritorio/LaboDatos-main/TP/Datasets/NEW/"
-#carpeta ="C:/Users/Phone/Desktop/Source2/LaboDatos/TP/Datasets/new/"
+#carpeta = "/home/Estudiante/Escritorio/LaboDatos-main/TP/Datasets/NEW/"
+carpeta ="C:/Users/Phone/Desktop/Source2/LaboDatos/TP/Datasets/new/"
 
 datos_banco_mundial = pd.read_csv(carpeta + "Datos_Banco_Mundial.csv")
 
@@ -222,7 +228,7 @@ subconsulta31 = sql^"""
 ConsultaSQL3= """
             SELECT DISTINCT pais.nombre_pais, COUNT(redes.redes) AS cantidad_redes
             FROM pais
-            INNER JOIN subconsulta31 AS redes
+            LEFT OUTER JOIN subconsulta31 AS redes
             ON redes.iso3 = pais.iso3
             GROUP BY pais.nombre_pais
             """
@@ -242,3 +248,4 @@ ConsultaSQL4= """
             ORDER BY pais ASC, sede ASC, Red_Social ASC,URL ASC
             """
 df4 = sql^ConsultaSQL4
+
