@@ -17,7 +17,8 @@ from inline_sql import sql, sql_val
 
 #Abrimos y guardamos los datasets:
 
-carpeta ="C:/Users/Phone/Desktop/Source2/LaboDatos/TP/Datasets/new/"
+carpeta = "/home/Estudiante/Escritorio/LaboDatos-main/TP/Datasets/NEW/"
+#carpeta ="C:/Users/Phone/Desktop/Source2/LaboDatos/TP/Datasets/new/"
 
 datos_banco_mundial = pd.read_csv(carpeta + "Datos_Banco_Mundial.csv")
 
@@ -31,7 +32,7 @@ datos_Secciones_Sedes = pd.read_csv(carpeta + "Datos_Secciones_Sedes.csv")
 
 #Creamos el dataframe vacio representando nuestro modelo relacional:
     
-pais = pd.DataFrame(columns = ["iso3", "nombre_pais", "pbi", "region"])
+pais = pd.DataFrame(columns = ["iso3", "nombre_pais", "pbi"])
 
 sedes = pd.DataFrame(columns = ["codigo_sede", "nombre_sede", "iso3"])
 
@@ -39,11 +40,12 @@ secciones = pd.DataFrame(columns = ["codigo_sede","nombre_seccion"])
 
 links = pd.DataFrame(columns = ["codigo_sede","link","red_social"])
 
+regiones = pd.DataFrame(columns = ["iso3","region"])
 
 
 #%%
 
-#Importamos los datos a traves de consultas de SQL:
+#Importamos los datos a traves de consultas de SQL:.
 
 #PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR#PREGUNTARPREGUNTAR    
 
@@ -53,7 +55,6 @@ links = pd.DataFrame(columns = ["codigo_sede","link","red_social"])
 
 
 
-    
 ########################################################
 #                        SEDES                         #
 ########################################################
@@ -74,15 +75,13 @@ sedes = sql^consultaSQL
 ########################################################
 
 consultaSQL = """
-            SELECT DISTINCT cs.pais_iso_3 AS iso3, cs.pais_castellano AS nombre_pais, bm.pbi, cs.region_geografica AS region
+            SELECT DISTINCT bm.codigo AS iso3, bm.Pais AS nombre_pais, bm.pbi
             FROM datos_banco_mundial AS bm
-            INNER JOIN datos_completos_sedes AS cs
-            ON bm.Codigo = cs.pais_iso_3
             UNION 
             SELECT DISTINCT *
             FROM pais
             """
-            
+    
 pais = sql^consultaSQL          
 
 #################################################################################################################
@@ -147,6 +146,21 @@ consultaSQL = """
 links = sql^consultaSQL            
 
 
+########################################################
+#                     REGIONES                         # 
+########################################################  
+
+consultaSQL = """
+            SELECT DISTINCT pais_iso_3, region_geografica AS region
+            FROM datos_completos_sedes
+            UNION
+            SELECT DISTINCT *
+            FROM regiones
+            """
+            
+regiones = sql^consultaSQL            
+
+
 #%%
 
 #Consultas SQL
@@ -175,28 +189,21 @@ df1 = sql^ConsultaSQL1
 
 subconsulta21 = sql^"""
             SELECT DISTINCT region, AVG(pbi) AS promedio
-            FROM pais
+            FROM regiones
+            INNER JOIN pais
+            ON pais.iso3 = regiones.pais_iso_3
             GROUP by region
             """
             
-subconsulta22 = sql^"""
-            SELECT DISTINCT iso3, COUNT(codigo_sede) AS sedes_por_pais
-            FROM sedes
-            GROUP BY iso3
-            """
-            
 ConsultaSQL2= """
-            SELECT DISTINCT promedio_pbi_region.region AS Región_geográfica, COUNT(sedesxpais.sedes_por_pais) AS Países_Con_SedesArgentinas, promedio_pbi_region.promedio AS Promedio_PBI_perCápita_2022_U$S
-            FROM pais
+            SELECT DISTINCT regiones.region AS  Region_geografica, COUNT(regiones.pais_iso_3) AS Paises_con_Sedes_Argentinas, promedios.promedio AS promedio_pbi
+            FROM regiones
             
-            INNER JOIN subconsulta21 AS promedio_pbi_region
-            ON promedio_pbi_region.region = pais.region
-
-            INNER JOIN subconsulta22 AS sedesxpais
-            ON sedesxpais.iso3 = pais.iso3
+            INNER JOIN subconsulta21 AS promedios
+            ON regiones.region = promedios.region
             
-            GROUP BY promedio_pbi_region.region,Promedio_PBI_perCápita_2022_U$S
-            ORDER BY Promedio_PBI_perCápita_2022_U$S
+            GROUP BY regiones.region,promedios.promedio
+            ORDER BY regiones.region
             """
 
 df2 = sql^ConsultaSQL2
@@ -213,11 +220,11 @@ subconsulta31 = sql^"""
             """
             
 ConsultaSQL3= """
-            SELECT DISTINCT pais.iso3, COUNT(redes.redes)
+            SELECT DISTINCT pais.nombre_pais, COUNT(redes.redes) AS cantidad_redes
             FROM pais
             INNER JOIN subconsulta31 AS redes
             ON redes.iso3 = pais.iso3
-            GROUP BY pais.iso3
+            GROUP BY pais.nombre_pais
             """
 df3 = sql^ConsultaSQL3
             
