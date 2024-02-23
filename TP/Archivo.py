@@ -1,21 +1,22 @@
 """
-Autores: 
+Autores: Rocca Santiago, Agustin Moguilevsky y Martin Pina
 
 Grupo: pip install grupo_1
+
+Descripcion: En este archivo se encuentran todas las herramientas y algoritmos necesarios para llevar el trabajo practico a cabo. Creación de los data frames, importación de datos a los mismos, consultas SQL, entre otras funcionalidades.
 
 """
 
 #Importamos las bibliotecas a usar:
     
 import pandas as pd
-import csv
-from inline_sql import sql, sql_val
-import pandas as pd
 import numpy as np
 from matplotlib import ticker   
 from matplotlib import rcParams 
 import matplotlib.pyplot as plt 
 import seaborn as sns
+from inline_sql import sql, sql_val
+import csv
 
 # https://miro.com/welcomeonboard/b0FPNDI0SXNJUXNrQ3dTbnhzYWtMeGttV0h4TmQzQTBreEtYZDdyWEtYQWRUZXJDbUNQOU9Yc0tkUG1CeGtOZHwzMDc0NDU3MzYxNDg1ODk2Nzk3fDI=?share_link_id=441943217891
 
@@ -90,13 +91,6 @@ consultaSQL = """
     
 pais = sql^consultaSQL          
 
-#################################################################################################################
-                                                                                                                #
-#SOLAMENTE TOMA LOS PAISES DONDE HAY SEDES. QUEREMOS TAMBIEN LOS QUE NO HAY SEDES?                              #
-                                                                                                                #
-#################################################################################################################
-
-
 
 ########################################################
 #                      SECCIONES                       #
@@ -134,8 +128,6 @@ for linea in filas:
             if link != " " and link != "":
                 links_nuevo.append([linea[0],link, link.split(".")[1]])
             
-                
-        
 archivo.close()
 
 links_nuevo = pd.DataFrame(links_nuevo, columns = ["codigo_sede", "link","red_Social"])
@@ -186,10 +178,10 @@ ConsultaSQL1 = """
             INNER JOIN pais
             ON sedes.iso3 = pais.iso3
             GROUP BY pais.nombre_pais, pais.pbi
-            ORDER BY pais.nombre_pais DESC
+            ORDER BY sedes DESC, pais.nombre_pais ASC
             """
 
-df1 = sql^ConsultaSQL1
+Consulta1 = sql^ConsultaSQL1
 
 #%%
 
@@ -209,10 +201,10 @@ ConsultaSQL2= """
             ON regiones.region = promedios.region
             
             GROUP BY regiones.region,promedios.promedio
-            ORDER BY regiones.region
+            ORDER BY promedio_pbi DESC
             """
 
-df2 = sql^ConsultaSQL2
+Consulta2 = sql^ConsultaSQL2
 
 #%%
 
@@ -232,7 +224,7 @@ ConsultaSQL3= """
             ON redes.iso3 = pais.iso3
             GROUP BY pais.nombre_pais
             """
-df3 = sql^ConsultaSQL3
+Consulta3 = sql^ConsultaSQL3
             
 #%%
 
@@ -247,5 +239,76 @@ ConsultaSQL4= """
             
             ORDER BY pais ASC, sede ASC, Red_Social ASC,URL ASC
             """
-df4 = sql^ConsultaSQL4
+Consulta4 = sql^ConsultaSQL4
 
+#%%
+
+#Pasamos a archivos los dataframes
+
+Consulta1.to_csv('consulta_1.csv', index=False)
+Consulta2.to_csv('consulta_2.csv', index=False)
+Consulta3.to_csv('consulta_3.csv', index=False)
+Consulta4.to_csv('consulta_4.csv', index=False)
+
+
+#%%
+
+
+
+
+grafico1 = sql^"""
+            SELECT DISTINCT Region_geografica, Paises_con_Sedes_Argentinas
+            FROM Consulta2
+            ORDER BY Paises_con_Sedes_Argentinas DESC, Region_geografica DESC
+            """
+            
+fig, ax = plt.subplots()
+
+ax.bar(data=grafico1, x='Region_geografica', height='Paises_con_Sedes_Argentinas')
+
+
+# Genera el grafico de barras de las ventas mensuales (mejorando la informacion mostrada)
+fig, ax = plt.subplots()
+
+plt.rcParams['font.family'] = 'sans-serif'           
+ax.bar(data=grafico1, x='Region_geografica' , height='Paises_con_Sedes_Argentinas')
+       
+ax.set_title('Sedes Argentinas por region')
+ax.set_xlabel('Regiones Geograficas', fontsize='medium')                       
+ax.set_ylabel('Numero de sedes Argentinas', fontsize='medium')    
+ax.set_xlim(-0.7, 11)
+ax.set_ylim(0, 25)
+
+plt.rcParams['axes.spines.left']  = True
+   
+plt.xticks(rotation=40, ha='right',fontsize="small")
+
+#%%
+
+
+grafico2 = sql^"""
+        SELECT DISTINCT  dcs.region_geografica AS region, pais.pbi 
+        FROM datos_completos_sedes AS dcs
+        
+        INNER JOIN datos_banco_mundial AS pais
+        ON pais.codigo= dcs.pais_iso_3
+        """
+
+
+sns.boxplot(hue="region",y="pbi",data = grafico2)
+plt.xlabel('Regiones Geograficas')
+plt.ylabel('PBI Promedio')
+plt.legend(size = "small")
+
+
+#%%
+
+grafico3 = sql^"""
+        SELECT DISTINCT pais.Pais AS pais,pais.pbi AS pbi, Consulta1.sedes AS sedes
+        FROM datos_banco_mundial AS pais
+        
+        LEFT OUTER JOIN Consulta1
+        ON Consulta1.País = pais.Pais
+        """
+
+plt.scatter(data=grafico3, x='pbi', y='sedes')
