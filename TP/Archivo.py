@@ -163,6 +163,50 @@ regiones = sql^consultaSQL
 
 #Consultas SQL
 
+subconsulta11 = sql^"""
+            SELECT DISTINCT pais.iso3 AS iso3
+            FROM pais
+            EXCEPT 
+            SELECT DISTINCT sedes.iso3
+            FROM sedes
+            """
+subconsulta12 = sql^"""
+            SELECT DISTINCT pais.nombre_pais, 0 as sedes, 0 AS secciones_promedio, pais.pbi
+            FROM subconsulta11 AS sub12
+            INNER JOIN pais
+            ON pais.iso3 = sub12.iso3
+            """
+            
+subconsulta13 = sql^"""
+            SELECT DISTINCT secciones.codigo_sede AS codigo_sede, COUNT(secciones.nombre_seccion) AS secciones_por_sede
+            FROM secciones
+            GROUP BY secciones.codigo_sede
+            """
+    
+subconsulta14 = sql^"""
+            SELECT DISTINCT pais.nombre_pais AS País, COUNT(subcon.codigo_sede) AS sedes, AVG(subcon.secciones_por_sede) AS secciones_promedio, pais.pbi 
+            FROM sedes
+            INNER JOIN subconsulta13 AS subcon
+            ON subCon.codigo_sede = sedes.codigo_sede
+            
+            INNER JOIN pais
+            ON sedes.iso3 = pais.iso3
+            GROUP BY pais.nombre_pais, pais.pbi
+            """
+            
+ConsultaSQL1 = """
+            SELECT DISTINCT *
+            FROM subconsulta14
+            UNION 
+            SELECT DISTINCT *
+            FROM subconsulta12
+            ORDER BY sedes DESC, País ASC
+            """
+            
+Consulta1 = sql^ConsultaSQL1
+
+#%%
+
 subconsulta1 = sql^"""
             SELECT DISTINCT secciones.codigo_sede AS codigo_sede, COUNT(secciones.nombre_seccion) AS secciones_por_sede
             FROM secciones
@@ -309,6 +353,17 @@ grafico3 = sql^"""
         
         LEFT OUTER JOIN Consulta1
         ON Consulta1.País = pais.Pais
+        ORDER BY pbi
         """
 
-plt.scatter(data=grafico3, x='pbi', y='sedes')
+fig, ax = plt.subplots()
+
+ax.bar(data=grafico3, x='sedes', height='pbi')
+
+
+# Genera el grafico de barras de las ventas mensuales (mejorando la informacion mostrada)
+fig, ax = plt.subplots()
+
+plt.rcParams['font.family'] = 'sans-serif'           
+ax.bar(data=grafico3, x='sedes' , height='pbi')
+
