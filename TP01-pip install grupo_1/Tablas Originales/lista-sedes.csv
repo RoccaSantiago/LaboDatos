@@ -1,0 +1,165 @@
+sede_id,sede_desc_castellano,pais_iso_3,pais_castellano,estado
+CALEG,Consulado  General  en  Porto  Alegre,BRA,REPÚBLICA  FEDERATIVA  DEL  BRASIL,Activo
+CANTO,Consulado  en  Antofagasta,CHL,REPÚBLICA  DE  CHILE,Activo
+CAREN,Consulado  General  en  Punta  Arenas,CHL,REPÚBLICA  DE  CHILE,Activo
+CASUN,Consulado  General  en  Asunción,PRY,REPÚBLICA  DEL  PARAGUAY,Activo
+CATLA,Consulado  General  en  Atlanta,USA,Estados  Unidos  de  América,Activo
+CBARC,Consulado  General  y  Centro  de  Promoción  en  Barcelona,ESP,REINO  DE  ESPAÑA,Activo
+CBEIJ,Sección  Consular  en  Beijing,CHN,REPÚBLICA  POPULAR  DE  CHINA,Activo
+CBELO,Consulado  en  Belo  Horizonte,BRA,REPÚBLICA  FEDERATIVA  DEL  BRASIL,Activo
+CBONN,Consulado  en  Bonn,DEU,REPÚBLICA  FEDERAL  DE  ALEMANIA,Activo
+CCADI,Consulado  en  Cádiz,ESP,REINO  DE  ESPAÑA,Activo
+CCEST,Consulado  General  en  Ciudad  del  Este,PRY,REPÚBLICA  DEL  PARAGUAY,Activo
+CCHIC,Consulado  General  en  Chicago,USA,Estados  Unidos  de  América,Activo
+CCOCH,Consulado  en  Cochabamba,BOL,ESTADO  PLURINACIONAL  DE  BOLIVIA,Activo
+CCOLO,Consulado  en  Colonia,URY,REPÚBLICA  ORIENTAL  DEL  URUGUAY,Activo
+CCONC,Consulado  en  Concepción,CHL,REPÚBLICA  DE  CHILE,Activo
+CCURI,Consulado  en  Curitiba,BRA,REPÚBLICA  FEDERATIVA  DEL  BRASIL,Activo
+CENCA,Consulado  General  en  Encarnación,PRY,REPÚBLICA  DEL  PARAGUAY,Activo
+CFBEN,Consulado  en  Fray  Bentos,URY,REPÚBLICA  ORIENTAL  DEL  URUGUAY,Activo
+CFDIG,Consulado  en  Foz  de  Iguazu,BRA,REPÚBLICA  FEDERATIVA  DEL  BRASIL,Activo
+CFLOR,Consulado  en  Florianopolis,BRA,REPÚBLICA  FEDERATIVA  DEL  BRASIL,Activo
+CFRAN,Consulado  General  y  Centro  de  Promoción  en  Francfort,DEU,REPÚBLICA  FEDERAL  DE  ALEMANIA,Activo
+CGEST,Consulado  General  y  Centro  de  Promoción  en  Estambul,TUR,República  de  Türkiye,Activo
+CGMUM,Consulado  General  y  Centro  de  Promoción  en  Mumbai,IND,REPÚBLICA  DE  LA  INDIA,Activo
+CGPAZ,Consulado  General  en  La  Paz,BOL,ESTADO  PLURINACIONAL  DE  BOLIVIA,Activo
+CGTEL,Consulado  General  en  Tel  Aviv,ISR,ESTADO  DE  ISRAEL,Activo
+CGUAN,Consulado  General  en  Guangzhou,CHN,REPÚBLICA  POPULAR  DE  CHINA,Activo
+CGUAY,Consulado  en  Guayaquil,ECU,REPÚBLICA  DEL  ECUADOR,Activo
+CGVAN,Consulado  General  en  Vancouver,CAN,CANADÁ,Activo
+CHAMB,Consulado  General  en  Hamburgo,DEU,REPÚBLICA  FEDERAL  DE  ALEMANIA,Activo
+CHONG,Consulado  General  en  Hong  Kong,CHN,REPÚBLICA  POPULAR  DE  CHINA,Activo
+CHOUS,Consulado  General  en  Houston,USA,Estados  Unidos  de  América,Activo
+CJOHA,Consulado  General  en  Johannesburgo,ZAF,REPÚBLICA  DE  SUDÁFRICA,Activo
+CLANG,Consulado  General  y  Centro  de  Promoción  en  Los  Ángeles,USA,Estados  Unidos  de  América,Activo
+CLIMA,Consulado  General  en  Lima,PER,REPÚBLICA  DEL  PERÚ,Activo
+CLOND,Consulado  General  en  Londres,GRB,REINO  UNIDO  DE  GRAN  BRETAÑA  E  IRLANDA  DEL  NORTE,Activo
+CMADR,Consulado  General  en  Madrid,ESP,REINO  DE  ESPAÑA,Activo
+CMALD,Consulado  en  Maldonado,URY,REPÚBLICA  ORIENTAL  DEL  URUGUAY,Activo
+CMALL,Consulado  en  Palma,ESP,REINO  DE  ESPAÑA,Activo
+CMDEO,Consulado  General  en  Montevideo,URY,REPÚBLICA  ORIENTAL  DEL  URUGUAY,Activo
+CMEXI,Consulado  General  en  México,MEX,ESTADOS  UNIDOS  MEXICANOS,Activo
+CMIAM,Consulado  General  y  Centro  de  Promoción  en  Miami,USA,Estados  Unidos  de  América,Activo
+CMILA,Consulado  General  y  Centro  de  Promoción  en  Milán,ITA,REPÚBLICA  ITALIANA,Activo
+CMREA,Consulado  General  en  Montreal,CAN,CANADÁ,Activo
+CNYOR,Consulado  General  y  Centro  de  Promoción  en  Nueva  York,USA,Estados  Unidos  de  América,Activo
+CPABL,Consulado  General  y  Centro  de  Promoción  en  San  Pablo,BRA,REPÚBLICA  FEDERATIVA  DEL  BRASIL,Activo
+CPAYS,Consulado  en  Paysandú,URY,REPÚBLICA  ORIENTAL  DEL  URUGUAY,Activo
+CPCAR,Consulado  en  Playa  del  Carmen,MEX,ESTADOS  UNIDOS  MEXICANOS,Activo
+CPMON,Consulado  en  Puerto  Montt,CHL,REPÚBLICA  DE  CHILE,Activo
+CRECI,Consulado  en  Recife,BRA,REPÚBLICA  FEDERATIVA  DEL  BRASIL,Activo
+CRIOJ,Consulado  General  en  Rio  de  Janeiro,BRA,REPÚBLICA  FEDERATIVA  DEL  BRASIL,Activo
+CROMA,Consulado  General  en  Roma,ITA,REPÚBLICA  ITALIANA,Activo
+CSBAH,Consulado  en  San  Salvador  de  Bahía,BRA,REPÚBLICA  FEDERATIVA  DEL  BRASIL,Activo
+CSCRS,Consulado  General  y  Centro  de  Promoción  en  Santa  Cruz,BOL,ESTADO  PLURINACIONAL  DE  BOLIVIA,Activo
+CSHAN,Consulado  General  y  Centro  de  Promoción  en  Shanghai,CHN,REPÚBLICA  POPULAR  DE  CHINA,Activo
+CSIDN,Consulado  General  en  Sidney,AUS,AUSTRALIA,Activo
+CSIGO,Consulado  General  en  Santiago,CHL,REPÚBLICA  DE  CHILE,Activo
+CSLTO,Consulado  en  Salto,URY,REPÚBLICA  ORIENTAL  DEL  URUGUAY,Activo
+CTARI,Consulado  General  en  Tarija,BOL,ESTADO  PLURINACIONAL  DE  BOLIVIA,Activo
+CTENE,Consulado  en  Tenerife,ESP,REINO  DE  ESPAÑA,Activo
+CTORO,Consulado  General  en  Toronto,CAN,CANADÁ,Activo
+CURUG,Consulado  en  Uruguayana,BRA,REPÚBLICA  FEDERATIVA  DEL  BRASIL,Activo
+CVALP,Consulado  General  en  Valparaíso,CHL,REPÚBLICA  DE  CHILE,Activo
+CVIGO,Consulado  General  en  Vigo,ESP,REINO  DE  ESPAÑA,Activo
+CVILL,Consulado  en  Villazon,BOL,ESTADO  PLURINACIONAL  DE  BOLIVIA,Activo
+CYACU,Consulado  en  Yacuiba,BOL,ESTADO  PLURINACIONAL  DE  BOLIVIA,Activo
+DIGAC,Argentinos  en  el  exterior,ARG,REPÚBLICA  ARGENTINA,Activo
+EALEM,Embajada  en  Alemania,DEU,REPÚBLICA  FEDERAL  DE  ALEMANIA,Activo
+EANGO,Embajada  en  Angola,AGO,REPÚBLICA  DE  ANGOLA,Activo
+EARAB,Embajada  en  Arabia  Saudita,SAU,REINO  DE  ARABIA  SAUDITA,Activo
+EARGE,Embajada  en  Argelia,DZA,REPÚBLICA  ARGELINA  DEMOCRÁTICA  Y  POPULAR,Activo
+EARME,Embajada  en  Armenia,ARM,REPÚBLICA  DE  ARMENIA,Activo
+EASIR,Embajada  en  Siria,SYR,REPÚBLICA  ÁRABE  SIRIA,Activo
+EAUST,Embajada  en  Australia,AUS,AUSTRALIA,Activo
+EAZER,Embajada  en  Azerbaiyán,AZE,REPÚBLICA  DE  AZERBAIYÁN,Activo
+EBANG,Embajada  en  Bangladesh,BGD,REPÚBLICA  POPULAR  DE  BANGLADESH,Activo
+EBARB,Embajada  en  Barbados,BRB,BARBADOS,Activo
+EBELG,Embajada  en  Bélgica,BEL,Reino  de  Bélgica,Activo
+EBOLV,Embajada  en  Bolivia,BOL,ESTADO  PLURINACIONAL  DE  BOLIVIA,Activo
+EBRAS,Embajada  en  Brasil,BRA,REPÚBLICA  FEDERATIVA  DEL  BRASIL,Activo
+EBULG,Embajada  en  Bulgaria,BGR,REPÚBLICA  DE  BULGARIA,Activo
+ECANA,Embajada  en  Canadá,CAN,CANADÁ,Activo
+ECEUR,Embajada  ante  la  Unión  Europea,BEL,Reino  de  Bélgica,Activo
+ECHES,Embajada  en  República  Checa,CZE,REPÚBLICA  CHECA,Activo
+ECHIN,Embajada  en  China,CHN,REPÚBLICA  POPULAR  DE  CHINA,Activo
+ECOLO,Embajada  en  Colombia,COL,REPÚBLICA  DE  COLOMBIA,Activo
+ECORE,Embajada  en  Corea  Del  Sur,KOR,REPÚBLICA  DE  COREA,Activo
+ECUBA,Embajada  en  Cuba,CUB,REPÚBLICA  DE  CUBA,Activo
+EDINA,Embajada  en  Dinamarca,DNK,REINO  DE  DINAMARCA,Activo
+EDOMI,Embajada  en  República  Dominicana,DOM,REPÚBLICA  DOMINICANA,Activo
+EEARB,Embajada  en  Emiratos  Árabes  Unidos,ARE,EMIRATOS  ÁRABES  UNIDOS,Activo
+EECUA,Embajada  en  Ecuador,ECU,REPÚBLICA  DEL  ECUADOR,Activo
+EEEUU,Embajada  en  Estados  Unidos,USA,Estados  Unidos  de  América,Activo
+EEGIP,Embajada  en  Egipto,EGY,REPÚBLICA  ÁRABE  DE  EGIPTO,Activo
+EEOEA,Misión  Permanente  ante  la  Organización  de  Estados  Americanos,USA,Estados  Unidos  de  América,Activo
+EESPA,Embajada  en  España,ESP,REINO  DE  ESPAÑA,Activo
+EETIO,Embajada  en  Etiopía,ETH,REPÚBLICA  DEMOCRÁTICA  FEDERAL  DE  ETIOPÍA,Activo
+EFILI,Embajada  en  Filipinas,PHL,REPÚBLICA  DE  FILIPINAS,Activo
+EFINL,Embajada  en  Finlandia,FIN,REPÚBLICA  DE  FINLANDIA,Activo
+EFRAN,Embajada  en  Francia,FRA,REPÚBLICA  FRANCESA,Activo
+EFRUS,Embajada  en  Rusia,RUS,FEDERACIÓN  DE  RUSIA,Activo
+EGREC,Embajada  en  Grecia,GRC,REPÚBLICA  HELÉNICA,Activo
+EGUAT,Embajada  en  Guatemala,GTM,REPÚBLICA  DE  GUATEMALA,Activo
+EGUYA,Embajada  en  Guyana,GUY,REPÚBLICA  COOPERATIVA  DE  GUYANA,Activo
+EHAIT,Embajada  en  Haití,HTI,REPÚBLICA  DE  HAITÍ,Activo
+EHILE,Embajada  en  Chile,CHL,REPÚBLICA  DE  CHILE,Activo
+EHOND,Embajada  en  Honduras,HND,REPÚBLICA  DE  HONDURAS,Activo
+EINDI,Embajada  en  India,IND,REPÚBLICA  DE  LA  INDIA,Activo
+EIRAN,Embajada  en  Irán,IRN,REPÚBLICA  ISLÁMICA  DE  IRÁN,Activo
+EIRLA,Embajada  en  Irlanda,IRL,IRLANDA,Activo
+EISIA,Embajada  en  Indonesia,IDN,REPÚBLICA  DE  INDONESIA,Activo
+EISRA,Embajada  en  Israel,ISR,ESTADO  DE  ISRAEL,Activo
+EITAL,Embajada  en  Italia,ITA,REPÚBLICA  ITALIANA,Activo
+EJAMA,Embajada  en  Jamaica,JAM,JAMAICA,Activo
+EJAPO,Embajada  en  Japón,JPN,日本国  (JAPÓN),Activo
+EKENY,Embajada  en  Kenia,KEN,REPÚBLICA  DE  KENYA,Activo
+EKUWA,Embajada  en  Kuwait,KWT,ESTADO  DE  KUWAIT,Activo
+ELBIA,Embajada  en  Libia,LBY,ESTADO  DE  LIBIA,Activo
+ELBNO,Embajada  en  Líbano,LBN,REPÚBLICA  LIBANESA,Activo
+ELUCI,Embajada  en  Santa  Lucía,LCA,SANTA  LUCÍA,Inactivo
+EMARR,Embajada  en  Marruecos,MAR,REINO  DE  MARRUECOS,Activo
+EMEXI,Embajada  en  México,MEX,ESTADOS  UNIDOS  MEXICANOS,Activo
+EMFAO,Misión  Permanente  ante  la  Organización  de  las  Naciones  Unidas  para  la  Alimentación  y  la  Agricultura,ITA,REPÚBLICA  ITALIANA,Activo
+EMOZA,Embajada  en  Mozambique,MOZ,REPÚBLICA  DE  MOZAMBIQUE,Activo
+EMSIA,Embajada  en  Malasia,MYS,MALASIA,Activo
+EMSUR,Representación  Permanente  para  MERCOSUR  y  ALADI,URY,REPÚBLICA  ORIENTAL  DEL  URUGUAY,Activo
+ENAUN,Representación  Permanente  ante  las  Naciones  Unidas,USA,Estados  Unidos  de  América,Activo
+ENICA,Embajada  en  Nicaragua,NIC,REPÚBLICA  DE  NICARAGUA,Activo
+ENIGE,Embajada  en  Nigeria,NGA,REPÚBLICA  FEDERAL  DE  NIGERIA,Activo
+ENORU,Embajada  en  Noruega,NOR,REINO  DE  NORUEGA,Activo
+ENZEL,Embajada  en  Nueva  Zelandia,NZL,NUEVA  ZELANDIA,Activo
+EOIRS,Misión  Permanente  ante  los  Organismos  Internacionales  en  Ginebra,CHE,Confederación  Suiza,Activo
+EPAKI,Embajada  en  Pakistán,PAK,REPÚBLICA  ISLÁMICA  DE  PAKISTÁN,Activo
+EPARA,Embajada  en  Paraguay,PRY,REPÚBLICA  DEL  PARAGUAY,Activo
+EPBAJ,Embajada  en  Holanda,NLD,REINO  DE  LOS  PAÍSES  BAJOS,Activo
+EPERU,Embajada  en  Perú,PER,REPÚBLICA  DEL  PERÚ,Activo
+EPNMA,Embajada  en  Panamá,PAN,REPÚBLICA  DE  PANAMÁ,Activo
+EPOLO,Embajada  en  Polonia,POL,REPÚBLICA  DE  POLONIA,Activo
+EPORT,Embajada  en  Portugal,PRT,REPÚBLICA  PORTUGUESA,Activo
+EQATR,Embajada  en  Qatar,QAT,ESTADO  DE  QATAR,Activo
+ERICA,Embajada  en  Costa  Rica,CRI,REPÚBLICA  DE  COSTA  RICA,Activo
+ERUMA,Embajada  en  Rumania,ROU,RUMANIA,Activo
+ERUNI,Embajada  en  Reino  Unido,GRB,REINO  UNIDO  DE  GRAN  BRETAÑA  E  IRLANDA  DEL  NORTE,Activo
+ESAFR,Embajada  en  Sudáfrica,ZAF,REPÚBLICA  DE  SUDÁFRICA,Activo
+ESALV,Embajada  en  El  Salvador,SLV,REPÚBLICA  DE  EL  SALVADOR,Activo
+ESENE,Embajada  en  Senegal,SEN,REPÚBLICA  DE  SENEGAL,Activo
+ESERB,Embajada  en  Serbia,SRB,REPÚBLICA  DE  SERBIA,Activo
+ESING,Embajada  en  Singapur,SGP,REPÚBLICA  DE  SINGAPUR,Activo
+ESSED,Representación  ante  la  Santa  Sede,VAT,SANTA  SEDE,Activo
+ESUEC,Embajada  en  Suecia,SWE,REINO  DE  SUECIA,Activo
+ESUIZ,Embajada  en  Suiza,CHE,Confederación  Suiza,Activo
+ESURI,Embajada  en  Surinam,SUR,REPÚBLICA  DE  SURINAME,Activo
+ETAIL,Embajada  en  Tailandia,THA,REINO  DE  TAILANDIA,Activo
+ETRIA,Embajada  en  Austria,AUT,REPÚBLICA  DE  AUSTRIA,Activo
+ETRIN,Embajada  en  Trinidad  y  Tobago,TTO,REPÚBLICA  DE  TRINIDAD  Y  TOBAGO,Activo
+ETUNE,Embajada  en  Túnez,TUN,REPÚBLICA  TUNECINA,Activo
+ETURQ,Embajada  en  Türkiye,TUR,República  de  Türkiye,Activo
+EUCRA,Embajada  en  Ucrania,UKR,UCRANIA,Activo
+EUNES,"Delegación  Permanente  ante  la  Organización  de  las  Naciones  Unidas  para  la  Educación, la  Ciencia  y  la  Cultura",FRA,REPÚBLICA  FRANCESA,Activo
+EUNGR,Embajada  en  Hungría,HUN,HUNGRÍA,Activo
+EURUG,Embajada  en  Uruguay,URY,REPÚBLICA  ORIENTAL  DEL  URUGUAY,Activo
+EVENE,Embajada  en  Venezuela,VEN,REPÚBLICA  BOLIVARIANA  DE  VENEZUELA,Activo
+EVIET,Embajada  en  Vietnam,VNM,REPÚBLICA  SOCIALISTA  DE  VIETNAM,Activo
+OCCAT,Oficina  Comercial  y  Cultural  Argentina  en  Taiwán,CHN,REPÚBLICA  POPULAR  DE  CHINA,Inactivo
+REPAL,Oficina  de  Representación  en  el  Estado  de  Palestina,PSE,ESTADO  DE  PALESTINA,Activo
