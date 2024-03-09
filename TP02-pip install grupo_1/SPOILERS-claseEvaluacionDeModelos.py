@@ -50,17 +50,8 @@ from sklearn.model_selection import cross_val_score
 cross_val_score(arbol, X_train, y_train, cv = 5)
 
 
-from sklearn.model_selection import KFold
-kf = KFold(n_splits=2, shuffle=True)
-list(kf.split(X, y))
-
-
-
-
-from sklearn.model_selection import RandomizedSearchCV
-
 hyper_params = {'criterion' : ["gini", "entropy"],
-                   'max_depth' : [2,3,4,5] }
+                   'max_depth' : range(1,6) }
 
 arbol = DecisionTreeClassifier()
 
