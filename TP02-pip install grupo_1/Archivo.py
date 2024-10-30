@@ -1,3 +1,13 @@
+'''
+Autores: Santiago Rocca, Agustin Moguilevsky y Martin Pina
+
+Grupo: pip install grupo_1
+
+Descripcion: En este archivo se encuentran todas las herramientas y algoritmos necesarios para llevar el trabajo practico a cabo. Creación de los data frames, importación de datos a los mismos, creacion de modelos y graficos.
+'''
+
+#%%
+
 #Importamos las bibliotecas
 import pandas as pd
 import numpy as np
@@ -6,9 +16,10 @@ from sklearn.utils import shuffle
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import GridSearchCV,train_test_split
-from sklearn.metrics import accuracy_score, confusion_matrix 
+from sklearn.metrics import accuracy_score, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+from   matplotlib import ticker 
 import seaborn as sns
 import random
 
@@ -149,7 +160,7 @@ fig, ax = plt.subplots()
 ax.pie(data = Cantidades, x = 'proporcion',labels='Letra', autopct='%1.1f%%',startangle=90,colors = ["#73A4CA", "#2E5B88"])
 
 #Titulo
-ax.set_title('Proporcion de As y Ls en muestra Al')
+ax.set_title('Proporcion de muestras')
 
 plt.savefig(carpeta + 'Graficos/Proporcion.png',bbox_inches='tight', dpi = 200)
 
@@ -234,7 +245,7 @@ x = muestras_AL.drop(columns = ['label'])
 y = muestras_AL[['label']]
 
 #Las separamos para entrenamiento y testeo
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state=1) 
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state=1, stratify=y) 
 
 del x,y,muestras_AL
 
@@ -295,7 +306,7 @@ for i in range(1,3):
     set_aleatorio = set()
     
     #Seteamos la seed de random
-    random.seed(i*random.randint(1,100))
+    random.seed(2*i)
     
     #Agregamos 3 pixeles al set
     while len(set_aleatorio)<3:
@@ -314,21 +325,22 @@ pixeles3 = pd.DataFrame(pixeles3).rename(columns = {0:'Nombre',1:'Exactitud',2:'
 
 #Generamos el grafico
 fig, ax = plt.subplots()
-ax.bar(x = 'Nombre', height = 'Exactitud', data = pixeles3)
+ax.bar(x = 'Nombre', height = 'Exactitud', color = ['blue','blue','orange','orange','green','green'], data = pixeles3)
 
 #Titulo
-ax.set_title('Comparacion de exactitud en set de 3 pixeles con Kvecinos Automatico')
+ax.set_title('Resultados en sets de 3 pixeles con los mejores parametros', y = 1.04)
 
 #Eje x
 plt.xticks(rotation=40, ha='right',fontsize="small")
 
 #Eje y
 ax.set_ylim(0.7, 1)   
+ax.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.2f}"))
 
 #Guardamos la imagen
 plt.savefig(carpeta + 'Graficos/ComparacionDeSetsDe3PixelesAuto.png',bbox_inches='tight', dpi = 200)
 
-del pixeles3,ax,fig
+del ax,fig
 
 #%% Set de n pixeles aleatorios
 #Repetimos el experimento 4 veces para obtener distintos sets de n pixeles aleatorios
@@ -373,10 +385,11 @@ ax.set_xticklabels(dataframe['Atributos'])
 #Eje y
 ax.set_ylabel('Score')
 ax.set_yticks([0,0.10,0.20,0.30,0.40,0.50,0.60,0.70,0.80,0.90,1])
+ax.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.2f}"))
 
 
 #Titulo
-ax.set_title('Score vs. Atributos para N Pixeles Aleatorios con mejor cantidad de vecinos')
+ax.set_title('Score vs. Atributos en sets aleatorios con los mejores parametros')
 
 #Leyenda
 ax.legend(loc='lower right', fontsize=9.5)
@@ -431,7 +444,7 @@ for k in range(1,16):
     set_aleatorio = set()
     
     #Seteamos la seed de random
-    random.seed(12)
+    random.seed(k)
     
     #Agregamos 3 pixeles al set
     while len(set_aleatorio)<3:
@@ -479,12 +492,13 @@ ax.set_xticks(range(1,16))
 #Eje y
 ax.set_ylabel('Score')
 ax.set_yticks([0.75,0.80,0.85,0.90,0.95,1])
+ax.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.2f}"))
 
 #Titulo
-ax.set_title('Cantidad de Vecinos vs. Score')
+ax.set_title('Cantidad de Vecinos vs. Score en sets de 3 pixeles')
 
 #Leyenda
-ax.legend(loc='center right', bbox_to_anchor=(1.1, 0.65),fontsize=9)
+ax.legend(loc='center right', bbox_to_anchor=(1.1, 0.7),fontsize=8)
 
 #Grilla
 plt.grid(linestyle='--', linewidth=0.5, axis = 'y')
@@ -528,82 +542,7 @@ for i in range(0,4):
 marcadores = {0:'o',1:'^',2:'p',3:'X'}
 colores = {0:'blue',1:'orange',2:'green',3:'red'}
 
-for i in range(0,4):
-    fig = plt.figure(figsize=(15, 15))
-    ax = fig.add_subplot(projection='3d')
-    ax.scatter(xs = 'atributos', ys ='k', data= npixeles[i], marker = marcadores[i], zs = 'score', label = 'set '+ str(i+1),s=150, color = colores[i])
-    
-    #Primer Grafico:
-        
-    #Eje x
-    ax.set_xlabel('Cantidad de Atributos',fontsize =15)
-    ax.set_xticks(range(1,11))
-    ax.xaxis.labelpad = 20
-    
-    
-    #Eje y
-    ax.set_ylabel('Cantidad de vecinos',fontsize = 15)
-    ax.set_yticks(range(1,11))
-    ax.yaxis.labelpad = 20
-    
-    #Eje z
-    ax.set_zlabel('Score',fontsize=15)
-    ax.zaxis.labelpad = 20
-    ax.set_zlim(0.5,1)
 
-
-    #Leyenda
-    ax.legend(loc = 'lower right',fontsize= 20)
-    
-    #Vista
-    ax.view_init(elev=20, azim=45)
-    
-    #Guardamos en una imagen
-    plt.savefig(carpeta + 'Graficos/Grafico3D/Separados/General/Grafico'+str(i+1)+'.png',bbox_inches='tight', dpi = 300)
-    
-    #Segundo Grafico:
-    
-    #Vista    
-    ax.view_init(elev=0, azim=90)
-    
-    #Eje y
-    ax.set_ylabel(' ',fontsize = 15)
-    ax.set_yticks([])
-    
-    #Eje z
-    ax.set_zlabel('Score',fontsize=15)
-    ax.zaxis.labelpad = 20
-    ax.set_zlim(0.5,1)
-    
-    #Titulo
-    ax.set_title('Cantidad de Atributos vs. Score',fontsize= 30)
-    
-    #Guardamos en una imagen
-    plt.savefig(carpeta + 'Graficos/Grafico3D/Separados/ScoreVSAtributos/Grafico'+str(i+1)+'.png',bbox_inches='tight', dpi = 300)
-    
-    #Tercer grafico
-    
-    #Vista
-    ax.view_init(elev=0, azim=0)
-    
-    #Eje z
-    ax.set_zlabel('Score',fontsize=15)
-    ax.zaxis.labelpad = 20
-    ax.set_zlim(0.5,1)
-    
-    #Eje x
-    ax.set_xlabel('',fontsize = 15)
-    ax.set_xticks([])
-    
-    #Eje y
-    ax.set_ylabel('Cantidad de vecinos',fontsize = 15)
-    ax.set_yticks(range(1,11))
-    
-    #Guardamos en una imagen
-    plt.savefig(carpeta + 'Graficos/Grafico3D/Separados/ScoreVSVecinos/Grafico'+str(i+1)+'.png',bbox_inches='tight', dpi = 300)
-    
-
-#%% Graficamos estos anteriores juntos
 
 fig = plt.figure(figsize=(15, 15))
 ax = fig.add_subplot(projection='3d')
@@ -624,10 +563,12 @@ ax.set_ylabel('Cantidad de vecinos',fontsize = 15)
 ax.set_yticks(range(1,11))
 ax.yaxis.labelpad = 20
 
+
 #Eje z
 ax.set_zlabel('Score',fontsize=15)
 ax.zaxis.labelpad = 20
 ax.set_zlim(0.5,1)
+ax.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.2f}"))
 
 
 #Titulo
@@ -688,7 +629,7 @@ x = vocales.drop(columns = ['label'])
 y = vocales[['label']]
 
 #Spliteamos en muestras de test y de etrenamiento
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state=1) 
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state=1,stratify=y) 
 
 del x,y,vocales
 
@@ -702,11 +643,11 @@ def ModeloVocalesNA(criterio,profundidad):
     #Entrenamos el arbol con nuestras muestras
     arbol.fit(x_train,y_train)
     
-    return (accuracy_score(y_test, arbol.predict(x_test)),accuracy_score(y_train, arbol.predict(x_train)))
+    return (accuracy_score(y_test, arbol.predict(x_test)))
 
 #%% Arbol no automatico con distintas profundidas con criterio Gini y Entropy
 
-ArbolNoAuto = {'gini test':[],'entropy test':[], 'gini train':[], 'entropy train':[]}
+ArbolNoAuto = {'gini test':[],'entropy test':[]}
 
 #Evaluamos el arbol para profundidades de 1 hasta 15 y guardamos los resultados
 for k in range(1,16):
@@ -714,36 +655,27 @@ for k in range(1,16):
     #Gini
     evaluacionGini = ModeloVocalesNA('gini', k)
     #Resultado con datos test
-    ArbolNoAuto['gini test'].append([k,evaluacionGini[0]])
-    #Resultado con datos train
-    ArbolNoAuto['gini train'].append([k,evaluacionGini[1]])
-    
+    ArbolNoAuto['gini test'].append([k,evaluacionGini])  
     #Entropy
     evaluacionEntropy = ModeloVocalesNA('entropy', k)
+
     #Resultado con datos test
-    ArbolNoAuto['entropy test'].append([k,evaluacionEntropy[0]])
-    #Resultado con datos train
-    ArbolNoAuto['entropy train'].append([k,evaluacionEntropy[1]])
-    
-    
+    ArbolNoAuto['entropy test'].append([k,evaluacionEntropy])
+
 #Creamos los dataframes a partir de los datos arrojados por los modelos
 ArbolNoAuto['gini test'] = pd.DataFrame(ArbolNoAuto['gini test']).rename(columns={0:'profundidad',1:'score'})
-ArbolNoAuto['gini train'] = pd.DataFrame(ArbolNoAuto['gini train']).rename(columns={0:'profundidad',1:'score'})
 ArbolNoAuto['entropy test'] = pd.DataFrame(ArbolNoAuto['entropy test']).rename(columns={0:'profundidad',1:'score'})
-ArbolNoAuto['entropy train'] = pd.DataFrame(ArbolNoAuto['entropy train']).rename(columns={0:'profundidad',1:'score'})
+
 
 del k
-
 #%% Grafico de arbol no automatico con distintas profundidas con criterio Gini y Entropy
 
 #Generamos el grafico
 fig, ax = plt.subplots()
 
-ax.plot('profundidad', 'score', data = ArbolNoAuto['gini test'],marker='.',linestyle='-',linewidth=0.5, label='Gini - Evaluacion')
-ax.plot('profundidad', 'score', data = ArbolNoAuto['entropy test'],marker='.',linestyle='-',linewidth=0.5, label='Entropy - Evaluacion')
+ax.plot('profundidad', 'score', data = ArbolNoAuto['gini test'],marker='.',linestyle='-',linewidth=0.5, label='Gini')
+ax.plot('profundidad', 'score', data = ArbolNoAuto['entropy test'],marker='.',linestyle='-',linewidth=0.5, label='Entropy')
 
-ax.plot('profundidad', 'score', data = ArbolNoAuto['gini train'],marker='.',linestyle='-',linewidth=0.5, label='Gini - Entrenamiento')
-ax.plot('profundidad', 'score', data = ArbolNoAuto['entropy train'],marker='.',linestyle='-',linewidth=0.5, label='Entropy - Entrenamiento')
 
 #Eje x
 ax.set_xlabel('Profundidad')
@@ -752,6 +684,10 @@ ax.set_xticks(range(1,16))
 #Eje y 
 ax.set_ylabel('Score')
 ax.set_yticks([0.3,0.4,0.5,0.6,0.70,0.8,0.9,1])
+ax.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.2f}"))
+
+#Titulo
+ax.set_title('Profundidad vs Score')
 #Leyenda
 ax.legend()
 
@@ -759,41 +695,36 @@ ax.legend()
 plt.savefig(carpeta + 'Graficos/Gini, entropy',bbox_inches='tight', dpi = 200)
 
 del ax,fig
-
 #%% Arbol automatico con mejor profundidad y mejor criterio
 
 arbol = DecisionTreeClassifier()
 
 hyper_params = {'criterion' : ["gini", "entropy"],
-                   'max_depth' : range(7,16) }
+                   'max_depth' : range(1,16) }
 
 clf = GridSearchCV(arbol, hyper_params)
 
 clf.fit(x_train, y_train)
 
-print(clf.best_params_)
+#print(clf.best_params_)
 
-print(clf.best_score_)
+#print(clf.best_score_)
 
-print(clf.score(x_test, y_test))
+#print(clf.score(x_test, y_test))
 
 #%%
 
-y_pred = clf.predict(x_test)
-
-acc_test = accuracy_score(y_test, y_pred)
-
-conf_matrix = confusion_matrix(y_test, y_pred)
-
 vocales = ['A','E','I','O','U']
-fig = plt.subplots()
-ax = plt.figure(figsize=(8, 6))
-sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", 
-            xticklabels=vocales, 
-            yticklabels=vocales)
-plt.xlabel('Prediccion')
-plt.ylabel('Label')
-plt.title('Matriz de Confusión')
+
+ConfusionMatrixDisplay.from_estimator(clf, x_test, y_test, display_labels=vocales,cmap='Blues', colorbar = False)
+
+#Eje x
+plt.xlabel("Vocal predecida")
+#Eje y
+plt.ylabel("Vocal verdadera")
+
+#Titulo
+plt.title('Matriz de Confusion')
 
 plt.savefig(carpeta + 'Graficos/Matriz',bbox_inches='tight', dpi = 200)
 
